@@ -1,0 +1,8 @@
+[loadbalancer]
+192.168.43.199  ansible_user=root  ansible_ssh_pass=rhelslave    ansible_connection=ssh
+
+
+[webserver]
+192.168.43.45  ansible_user=root  ansible_ssh_pass=rhelansible    ansible_connection=ssh
+
+192.168.43.239  ansible_user=root  ansible_ssh_pass=rhelansible   ansible_connection=ssh
