@@ -1,0 +1,29 @@
+- hosts: loadbalancer
+  vars_prompt:
+      - name: lbport
+        prompt: "Enter Port No: "
+        private: no
+  tasks:
+  - firewalld:
+       port: "{{ lbport }}/tcp"
+       permanent: yes
+       state: enabled
+       
+       
+  - package:
+       name: "haproxy"   
+       state: present
+ 
+  - template:
+       src: "haproxy.cfg"
+       dest: "/etc/haproxy/haproxy.cfg"
+  
+  - name: "start haproxy service"
+    service:
+       name: "haproxy"
+       state: restarted
+       enabled: yes
+  
+
+
+            
