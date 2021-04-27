@@ -1,0 +1,29 @@
+- hosts: webserver
+  tasks:
+       
+  - package:
+       name: "httpd"   
+       state: present
+
+  - package: 
+       name: "php"
+       state: present 
+      
+  - name: "copy file to /var/www/lw folder"
+    copy:
+       src: "index.php"
+       dest: "/var/www/html"
+  - name: "add firewall rule"
+    firewalld:
+       port: "80/tcp"
+       state: "enabled"
+       permanent: true
+       
+  - name: "start httpd service"
+    service:
+       name: "httpd"
+       state: restarted
+
+
+
+            
